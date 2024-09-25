@@ -49,7 +49,7 @@ function GrowthSimulation(N,m,R₀,D,kₛ,l₀,kf,η,growth_dir,domain_type,Tmax
             prob, p = SetupODEproblem(btype,M,m,R₀,kₛ,η,kf,l₀,δt,Tmax,
                                         growth_dir,domain_type,prolif,death,embed,β,γ,Ot,dist_type,restoring_force)
             Set_Random_Seed(seed)                            
-            @time sol = solve(prob, Euler(), save_everystep = false, saveat=savetimes, dt=δt, dtmax = δt)
+            @time sol = solve(prob, RK4(), save_everystep = false, saveat=savetimes, dt=δt, dtmax = δt)
             push!(results, postSimulation(btype, sol, p))
             printInfo(ii,length(btypes),btype,N,kₛ*m,η/m,kf/m,M,D)
         end
