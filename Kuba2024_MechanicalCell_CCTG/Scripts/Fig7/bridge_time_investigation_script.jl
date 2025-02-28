@@ -2,43 +2,22 @@ using Makie
 using CairoMakie
 
 # Time to bridge based on side length
-#Tbₛ = (sₛ, kf, q₀) -> sₛ./(4*kf*q₀)
-#Tbₕ = (sₕ, kf, q₀) -> (√3 .* sₕ)./(4*kf*q₀)
-
-#Ωmax = 500^2
-#Ωmin = 50^2
-#Ω₀ = LinRange(Ωmax, Ωmin, 100)
-#Sₛ = sqrt.(Ω₀)
-#Sₕ = sqrt.((2/(3√3)).*Ω₀)
-
-#ratio = Sₛ ./ Sₕ
-
-#q₀ = 1/20
-
-#Tb_square = Tbₛ(Sₛ, kf, q₀)
-#Tb_hex = Tbₕ(Sₕ, kf, q₀)
-
 Tb_Square = (L, kf, q₀) -> L./(4*kf*q₀)
 Tb_Hex = (L, kf, q₀) -> (√3 .*L)./(4*kf*q₀)
 Tb_Buenzli_2020 = (L,Tb₀,μ) -> Tb₀.*(L.^μ) 
-
-
-S = LinRange(150,650,500)
-
-# Our analytical model
-
-q₀ = 1/20;
-kf = 87.842
-Tb_Square_2024 = Tb_Square(S,kf,q₀)
+# Analytical solution
+S = LinRange(150,650,500) # range of side lengths
+q₀ = 1/20; # initial cell density
+kf = 87.842 # tissue formation rate
+Tb_Square_2024 = Tb_Square(S,kf,q₀) 
 Tb_Hex_2024 = Tb_Hex(S,kf,q₀)
 
-# Buenzli et al. 2020
+# Model parameter values from Buenzli et al. 2020
 Tb₀ = 0.0506460614771658
 μ = 0.999093953616113 
-
-#Tb_2020 = Tb_Buenzli_2020(S,Tb₀_high, μ_mid)  # Nice Fit
 Tb_2020 = Tb_Buenzli_2020(S,Tb₀, μ)
-# Buenzli et al. 2020 Data (Figure 3)
+
+# Data extracted from Buenzli et al. 2020 - Figure 3
 L_tested_2020 = [200,300,400,500,600]
 Tb_approx_2020 = [11.1259,14.2681,17.9732,28.465,29.0009]
 Tb_error_2020 = [0.131983,0.10861,0.874037,2.0047,0.629024]
