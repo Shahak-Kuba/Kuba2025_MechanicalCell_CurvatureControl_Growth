@@ -1,5 +1,5 @@
 # Kuba_2025_MechanicalCell_CurvatureControl_Growth
 
-Code to perform the numerical simulations of the determinsitic discrete and continuum models of biological tissue growth. This repository is supplementary material for the preprint "A computational model of curvature controlled tissue growth incorporating mechanical cell interactions" available on ...
+Computer code in Julia used for discrete and continuum model simulations presented in the research article "A computational model of curvature controlled tissue growth incorporating mechanical cell interactions". Preprint available at " ".
 
 The simulation code is programmed in Julia and organised into the “src” folder, which is divided into “Discrete” and “Continuum” folders for the respective simulation codes. A separate folder is dedicated to the collective plotting code. A folder named “Scripts” contains the code responsible for generating figures 3 to 7 of the previously described paper. Finally, another folder holds the PDF version of all simulation figures. However, it is important to note that these images were subsequently exported to Inkscape for post-processing and figure labeling. We thank Mohd Almie Alias for the original implementation of the numerical solvers (Semi-implicit inite difference and Finite volume) of the continuum model which we adapted in the Julia programming language. 
